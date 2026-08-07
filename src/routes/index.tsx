@@ -1,24 +1,39 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Hero } from "@/components/sections/hero";
+import { HubCards } from "@/components/sections/hub-cards";
+import { Bento } from "@/components/sections/bento";
+import { HowItWorks } from "@/components/sections/how-it-works";
+import { Community, CoursesPreview, FinalCta } from "@/components/sections/courses-preview";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "HunMaster — курсы венгерского языка" },
+      {
+        name: "description",
+        content:
+          "HunMaster — проект о живом венгерском языке: материалы, разборы произношения, Telegram-сообщество и будущие курсы A1–B2.",
+      },
+      { property: "og:title", content: "HunMaster — курсы венгерского языка" },
+      {
+        property: "og:description",
+        content: "Живой венгерский язык: материалы, разборы и сообщество HunMaster.",
+      },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      <Hero />
+      <HubCards />
+      <Bento />
+      <HowItWorks />
+      <CoursesPreview />
+      <Community />
+      <FinalCta />
+    </>
   );
 }
